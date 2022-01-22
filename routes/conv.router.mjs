@@ -8,14 +8,15 @@ router.post("/add-conv", conv_controller.postNewConv);
 
 // DELETE conversation
 
-// GET all conversations from one specific user
-router.get("/", conv_controller.getAllConvsFromUser);
+// GET all conversations from current user
+router.get("/all", conv_controller.getAllConvsFromUser);
 
-// GET all msgs from one specific conversation
-router.get("/one/:id", conv_controller.getAllMsgsFromConv);
+// GET one conversation from current user
+router.get("/one/:id", conv_controller.getOneConvFromUser);
 
-// GET one specific msg from one specific conversation
+// GET one msg from one conversation from current user
 
-// PATCH/PUT add msg to one specific conversation
+// PATCH/PUT add msg to one conversation
+router.put("/add-msg/:id", conv_controller.addMsgToConv);
 
 export default router;

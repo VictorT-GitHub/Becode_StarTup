@@ -1,26 +1,56 @@
+import jsonwebtoken from "jsonwebtoken";
+
 import usermodel from "../models/user.model.mjs";
+import JOIvalidation from "../validation/validation.mjs";
 
-// POST REGISTER new user
+const maxAge = 24 * 60 * 60;
+
+// POST REGISTER new user (return user._id)
 const postNewUser = (req, res) => {
-  const { email, password, firstname, lastname, birthday, motto } = req.body;
+  // JOI validator
+  const { error } = JOIvalidation.userCheck(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
-  const newUser = new usermodel({
-    email: email,
-    password: password,
-    firstname, // Pas besoin d'écrire la
-    lastname, // suite comme au dessus car en js
-    birthday, // [motto,] === [motto: motto,]
-    motto, // (ça aussi c'est du destructuring)
-  });
+  const newUser = new usermodel(req.body);
 
-  newUser.save((err, data) => {
-    if (err) res.status(400).send(err);
-    else res.status(201).send(data._id);
+  newUser.save((err, docs) => {
+    if (err) res.status(400).send("Post new user ERROR: " + err);
+    else res.status(201).send(docs._id);
   });
 };
 
-// POST LOGIN
+// POST LOGIN (return user._id)
+const userLogin = async (req, res) => {
+  // JOI validator
+  const { error } = JOIvalidation.loginCheck(req.body);
+  if (error)
+    return res.status(400).send("Login Error: " + error.details[0].message);
 
-// GET LOGOUT
+  try {
+    // Email&password verification (login() : statics function created in users.model.mjs)
+    const user_id = await usermodel.login(req.body.email, req.body.password);
 
-export default { postNewUser };
+    // JWT create token
+    const token = jsonwebtoken.sign({ user_id }, process.env.JWT_KEY, {
+      expiresIn: maxAge,
+    });
+
+    // Cookies (with cookie-parser)
+    res.cookie("jwt", token, { maxAge: maxAge * 1000 });
+
+    // If everything ok, funct return the user id
+    res.status(200).json({ user: user_id });
+
+    // If error, funct return the error
+  } catch (err) {
+    res.status(400).send("Login Error: " + err);
+  }
+};
+
+// GET LOGOUT (redirect to the homepage)
+const userLogout = (req, res) => {
+  res.cookie("jwt", "", { maxAge: 1 }); // "Delete" the jwt cookie
+  res.redirect("/api"); // Redirect to the homepage
+};
+
+export default { postNewUser, userLogin, userLogout };
