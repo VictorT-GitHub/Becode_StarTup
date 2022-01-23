@@ -10,10 +10,13 @@ const getAllUsers = (req, res) => {
     .select("-__v -password -lastname -updatedAt");
 };
 
-// GET one user (no password) (VEROUILLED)
+// GET current user (no password)
+const getOneUser = (req, res) => {};
 
-// PATCH/PUT user (no password ?) (VEROUILLED)
+// PUT current user (no password ?)
+const modifyOneUser = (req, res) => {};
 
-// DELETE user (VEROUILLED)
+// DELETE current user
+const deleteOneUser = (req, res) => {};
 
-export default { getAllUsers };
+export default { getAllUsers, getOneUser, modifyOneUser, deleteOneUser };

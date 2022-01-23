@@ -9,12 +9,13 @@ const maxAge = 24 * 60 * 60;
 const postNewUser = (req, res) => {
   // JOI validator
   const { error } = JOIvalidation.userCheck(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error)
+    return res.status(400).send("Register Error: " + error.details[0].message);
 
   const newUser = new usermodel(req.body);
 
   newUser.save((err, docs) => {
-    if (err) res.status(400).send("Post new user ERROR: " + err);
+    if (err) res.status(400).send("Register Error: " + err);
     else res.status(201).send(docs._id);
   });
 };
