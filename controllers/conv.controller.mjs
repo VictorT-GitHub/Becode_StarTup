@@ -20,7 +20,7 @@ const postNewConv = (req, res) => {
 };
 
 // DELETE (this new) conversation (if not used)
-// !! WORK IN PROGRESS !!
+// !! WORK IN PROGRESS !! et jsais pas du tout comment faire x)
 const deleteNewConv = (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id))
     return res.status(400).send("Conversation id unknow: " + req.params.id);

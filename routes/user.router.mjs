@@ -7,12 +7,12 @@ import user_controller from "../controllers/user.controller.mjs";
 router.get("/all", user_controller.getAllUsers);
 
 // GET current user (no password)
-router.get("/one/:id", user_controller.getOneUser);
+router.get("/one", user_controller.getOneUser);
 
 // PUT current user (no password ?)
-router.put("/modify/:id", user_controller.modifyOneUser);
+router.put("/modify", user_controller.modifyOneUser);
 
 // DELETE current user
-router.delete("/delete/:id", user_controller.deleteOneUser);
+router.delete("/delete", user_controller.deleteOneUser);
 
 export default router;
