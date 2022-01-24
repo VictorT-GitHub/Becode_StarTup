@@ -1,0 +1,56 @@
+.home {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding-bottom: 80px;
+  .brand {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p {
+      font-family: "Lato", sans-serif;
+      font-weight: 700;
+      top: 240px;
+      position: absolute;
+      text-align: center;
+      font-size: 22px;
+    }
+    img {
+      width: 80vw;
+    }
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    a {
+      text-decoration: none;
+    }
+    button {
+      font-size: 18px;
+      border: none;
+      width: 90vw;
+      height: 60px;
+      margin: 10px 0px;
+      border-radius: 10px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .login {
+      background-color: #4d4dff;
+      color: white;
+    }
+    .register {
+      border: 1px solid #3655b3;
+      background-color: #fafafa;
+    }
+  }
+}
