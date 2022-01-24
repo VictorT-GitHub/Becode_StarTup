@@ -9,8 +9,8 @@ Deployment -> []() **[Coming soon]**
 
 ## Teamwork
 
-- **Youssef Akanni** - Find my teammate, who provided the frontend, on his profile [YoussefAkanni](https://github.com/YoussefAkanni)
-- **Victor Tardif** - That's me, and you are already on my [Github profile](https://github.com/VictorT-GitHub)
+- **Youssef Akanni** - Find my teammate, who provided the **frontend**, on his profile [YoussefAkanni](https://github.com/YoussefAkanni)
+- **Victor Tardif** - That's me, i provided the **backend**, and you are already on my [Github profile](https://github.com/VictorT-GitHub)
 
 ## API Documentation
 
