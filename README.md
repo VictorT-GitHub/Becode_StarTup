@@ -22,7 +22,7 @@ Deployment -> []() **[Coming soon]**
 - **Body:** No body
 - **Return:** "Welcome on the StarTup API !"
 
-## Authentification Routes & Middlewares
+## Authentification Routes
 
 ### Register (Post new user)
 
