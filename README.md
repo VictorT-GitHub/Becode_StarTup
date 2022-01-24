@@ -12,13 +12,13 @@ Deployment -> []() **[Coming soon]**
 - **Youssef Akanni** - Find my teammate, who provided the **frontend**, on his profile [YoussefAkanni](https://github.com/YoussefAkanni)
 - **Victor Tardif** - That's me, i provided the **backend**, and you are already on my [Github profile](https://github.com/VictorT-GitHub)
 
-## API Documentation
+# API Documentation
 
-### Authentification Routes & Middlewares
+## Authentification Routes & Middlewares
 
-### User Routes
+## User Routes
 
-1. **Get all users**
+### Get all users
 
 - **URL:** .../api/user/all
 - **Methode:** GET
@@ -28,7 +28,7 @@ Deployment -> []() **[Coming soon]**
 Provide all users except the currently logged in one.  
 Does not provide the password or the last-name.
 
-2. **Get current user**
+### Get current user
 
 - **URL:** .../api/user/one
 - **Methode:** GET
@@ -38,7 +38,7 @@ Does not provide the password or the last-name.
 Does not provide the password.  
 Automatically selects the current user by his id contained in his authentification cookie.
 
-3. **Edit current user profile**
+### Edit current user profile
 
 - **URL:** .../api/user/modify
 - **Methode:** PUT
@@ -49,7 +49,7 @@ Parameters in [square brackets] are all optional.
 Cannot change the password or the id.  
 Automatically selects the current user by his id contained in his authentification cookie.
 
-4. **Delete current user profile**
+### Delete current user profile
 
 - **URL:** .../api/user/delete
 - **Methode:** DELETE
@@ -59,4 +59,4 @@ Automatically selects the current user by his id contained in his authentificati
 Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the information of the deleted user.  
 Automatically selects the current user by his id contained in his authentification cookie.
 
-### Conversations (& Messages) Routes
+## Conversations (& Messages) Routes
