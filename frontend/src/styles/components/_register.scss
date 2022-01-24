@@ -1,0 +1,45 @@
+.registerPage {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 40px;
+  form {
+    display: flex;
+    justify-content: flex-start;
+
+    flex-direction: column;
+    input {
+      width: 90vw;
+      height: 60px;
+      margin: 10px 0px;
+      border-radius: 10px;
+      border: solid 1px #3655b3;
+      padding: 8px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 16px;
+      &:focus {
+        outline: solid 1px #00a2ff;
+        border: none;
+      }
+    }
+    p {
+      span {
+        opacity: 0.5;
+      }
+    }
+    button {
+      font-size: 18px;
+      border: none;
+      width: 90vw;
+      height: 60px;
+      margin: 10px 0px;
+      border-radius: 10px;
+      font-family: "Montserrat", sans-serif;
+
+      background-color: #4d4dff;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
