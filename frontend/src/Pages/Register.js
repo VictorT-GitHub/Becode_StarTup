@@ -5,11 +5,32 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [birthday, setBirthday] = useState(Date);
+  // const [birthday, setBirthday] = useState(Date);
   const [motto, setMotto] = useState("");
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    await fetch("http://localhost:5000/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        firstname: firstName,
+        lastname: lastName,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => console.log(json))
+      .catch((error) => {
+        throw error;
+      });
   };
+
+  console.log(email, password, firstName, lastName);
 
   return (
     <div className="registerPage">
@@ -34,12 +55,12 @@ const Register = () => {
           onChange={(e) => setLastName(e.target.value)}
         />
         <p>Birthday</p>
-        <input
+        {/* <input
           type="date"
           required
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
-        />
+        /> */}
         <p>
           Motto <span>(optional) </span>
         </p>
