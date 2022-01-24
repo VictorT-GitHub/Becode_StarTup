@@ -126,6 +126,8 @@ Return this new conversation data, of course the messages array is empty at the 
 
 ### Delete conversation
 
+**[Coming soon]**
+
 ### Get all conversations
 
 - **URL:** .../api/conv/all
