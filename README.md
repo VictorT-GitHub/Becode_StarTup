@@ -16,6 +16,12 @@ Deployment -> []() **[Coming soon]**
 
 ### API Homepage
 
+- **URL:** .../api
+- **Methode:** GET
+- **Params:** No params
+- **Body:** No body
+- **Return:** "Welcome on the StarTup API !"
+
 ## Authentification Routes & Middlewares
 
 ### Register (Post new user)
