@@ -14,7 +14,44 @@ Deployment -> []() **[Coming soon]**
 
 # API Documentation
 
+### API Homepage
+
 ## Authentification Routes & Middlewares
+
+### Register (Post new user)
+
+- **URL:** .../api/auth/register
+- **Methode:** POST
+- **Params:** No params
+- **Body:** email, password, firstname, lastname, [birthday, motto]
+- **Return:** user id
+
+Parameters in [square brackets] are all optional.  
+Create a new user and automatically bcrypt his password. This password cannot be modified later.
+
+- "email" field must be a valid email (+ unique).
+- "birthday" field must be a valid date.
+
+### Login
+
+- **URL:** .../api/auth/login
+- **Methode:** POST
+- **Params:** No params
+- **Body:** email, password
+- **Return:** user id
+
+Create a jwt-cookie and a res.locals.user_id for the currently logged in user.
+
+### Logout
+
+- **URL:** .../api/auth/logout
+- **Methode:** GET
+- **Params:** No params
+- **Body:** No body
+- **Return:** Redirect to API homepage
+
+Delete the jwt-cookie and the res.locals.user_id.  
+**A MODIFIER:** Redirect to the API homepage.
 
 ## User Routes
 
@@ -23,6 +60,7 @@ Deployment -> []() **[Coming soon]**
 - **URL:** .../api/user/all
 - **Methode:** GET
 - **Params:** No params
+- **Body:** No body
 - **Return:** id, email, firstname, birthday, motto, createdAt
 
 Provide all users except the currently logged in one.  
@@ -33,6 +71,7 @@ Does not provide the password or the last-name.
 - **URL:** .../api/user/one
 - **Methode:** GET
 - **Params:** No params
+- **Body:** No body
 - **Return:** id, email, firstname, lastname, birthday, motto, createdAt, updatedAt
 
 Does not provide the password.  
@@ -42,8 +81,9 @@ Automatically selects the current user by his id contained in his authentificati
 
 - **URL:** .../api/user/modify
 - **Methode:** PUT
-- **Params:** req.body.[email, firstname, lastname, birthday, motto]
-- **Return:** uptaded user profile without password
+- **Params:** No params
+- **Body:** [email, firstname, lastname, birthday, motto]
+- **Return:** uptaded user profile data without password
 
 Parameters in [square brackets] are all optional.  
 Cannot change the password or the id.  
@@ -54,6 +94,7 @@ Automatically selects the current user by his id contained in his authentificati
 - **URL:** .../api/user/delete
 - **Methode:** DELETE
 - **Params:** No params
+- **Body:** No body
 - **Return:** deleted user profile without password
 
 Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the information of the deleted user.  
