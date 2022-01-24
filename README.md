@@ -32,7 +32,7 @@ Deployment -> []() **[Coming soon]**
 - **Body:** email, password, firstname, lastname, [birthday, motto]
 - **Return:** id
 
-Return this new user id.
+Return this new user id.  
 Parameters in [square brackets] are all optional.  
 Create a new user and automatically bcrypt his password. This password cannot be modified later.
 
@@ -47,7 +47,7 @@ Create a new user and automatically bcrypt his password. This password cannot be
 - **Body:** email, password
 - **Return:** id
 
-Return currently logged in user id.
+Return currently logged in user id.  
 Create a jwt-cookie and a res.locals.user_id for the currently logged in user.
 
 ### Logout
@@ -158,7 +158,7 @@ Automatically selects the current user by his id contained in his authentication
 - **Body:** No body
 - **Return:** authorID, text, date
 
-Return this message data if the current user have acces to this conversation.
+Return this message data if the current user have acces to this conversation.  
 Automatically selects the current user by his id contained in his authentication cookie.
 
 - "conv_id" parameter must be a valid conversation id.
