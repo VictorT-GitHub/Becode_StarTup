@@ -22,7 +22,7 @@ Deployment -> []() **[Coming soon]**
 - **Body:** No body
 - **Return:** "Welcome on the StarTup API !"
 
-## Authentification Routes
+## Authentication Routes
 
 ### Register (Post new user)
 
@@ -81,7 +81,7 @@ Does not provide the password or the last-name.
 - **Return:** id, email, firstname, lastname, birthday, motto, createdAt, updatedAt
 
 Does not provide the password.  
-Automatically selects the current user by his id contained in his authentification cookie.
+Automatically selects the current user by his id contained in his authentication cookie.
 
 ### Edit current user profile
 
@@ -93,7 +93,7 @@ Automatically selects the current user by his id contained in his authentificati
 
 Parameters in [square brackets] are all optional.  
 Cannot change the password or the id.  
-Automatically selects the current user by his id contained in his authentification cookie.
+Automatically selects the current user by his id contained in his authentication cookie.
 
 ### Delete current user profile
 
@@ -104,6 +104,6 @@ Automatically selects the current user by his id contained in his authentificati
 - **Return:** deleted user profile without password
 
 Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the information of the deleted user.  
-Automatically selects the current user by his id contained in his authentification cookie.
+Automatically selects the current user by his id contained in his authentication cookie.
 
 ## Conversations (& Messages) Routes
