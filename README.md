@@ -18,7 +18,7 @@ Deployment -> []() **[Coming soon]**
 
 ### User Routes
 
-##### Get all users
+#### Get all users
 
 - **Methode:** GET
 - **Params:** No params
