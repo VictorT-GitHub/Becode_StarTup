@@ -114,9 +114,10 @@ Automatically selects the current user by his id contained in his authentication
 - **Methode:** POST
 - **Params:** No params
 - **Body:** userID
-- **Return:** conversation data
+- **Return:** id, [usersID], messages:[], createdAt, updatedAt
 
-**userID** is the id of the user that does NOT create the conversation. The user that create the conversation is the currently logged in user, and we automatically select his id by his jwt-cookie.
+**userID** is the id of the user that does NOT create the conversation. The user that create the conversation is the currently logged in user, and we automatically select his id by his jwt-cookie.  
+Return this new conversation data, of course the messages array is empty at the start.
 
 - "userID" field must be a valid id.
 
@@ -126,7 +127,7 @@ Automatically selects the current user by his id contained in his authentication
 - **Methode:** GET
 - **Params:** No params
 - **Body:** No body
-- **Return:** id, usersID, messages:[{authorID, text, date},...], createdAt, updatedAt
+- **Return:** id, [usersID], messages:[{authorID, text, date},...], createdAt, updatedAt
 
 Return all conversations data of the currently logged in user. Conversations data contains their messages data as well.  
 Automatically selects the current user by his id contained in his authentication cookie.
@@ -137,7 +138,7 @@ Automatically selects the current user by his id contained in his authentication
 - **Methode:** GET
 - **Params:** id
 - **Body:** No body
-- **Return:** id, usersID, messages:[{authorID, text, date},...], createdAt, updatedAt
+- **Return:** id, [usersID], messages:[{authorID, text, date},...], createdAt, updatedAt
 
 Return conversation data. Conversations data contains their messages data too.  
 Automatically selects the current user by his id contained in his authentication cookie.
