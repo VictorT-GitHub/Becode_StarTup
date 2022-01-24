@@ -7,15 +7,15 @@ Frontend Stack : **React.js** - **[Coming soon]**
 
 Deployment -> []() **[Coming soon]**
 
-### Teamwork
+## Teamwork
 
 - **Youssef Akanni** - Find my teammate, who provided the frontend, on his profile [YoussefAkanni](https://github.com/YoussefAkanni)
 - **Victor Tardif** - That's me, and you are already on my [Github profile](https://github.com/VictorT-GitHub)
 
-### API Documentation
+## API Documentation
 
-#### Authentification Routes & Middlewares
+### Authentification Routes & Middlewares
 
-#### User Routes
+### User Routes
 
-#### Conversations (& Messages) Routes
+### Conversations (& Messages) Routes
