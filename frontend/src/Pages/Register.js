@@ -7,7 +7,7 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [birthday, setBirthday] = useState(Date);
   const [motto, setMotto] = useState("");
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
   };
 
@@ -17,6 +17,7 @@ const Register = () => {
         <p>Email</p>
         <input
           required
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -50,7 +51,7 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={(e) => handleLogin(e)}> submit </button>
+        <button onClick={(e) => handleRegister(e)}> submit </button>
       </form>
     </div>
   );
