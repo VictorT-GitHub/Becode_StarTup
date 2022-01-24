@@ -165,7 +165,7 @@ const modifyOneMsg = (req, res) => {
       // Saves the conversation with the updated message
       return conv.save((err) => {
         if (err) return res.status(400).send("Modify message Error: " + err);
-        return res.status(200).send(conv);
+        return res.status(200).send(message);
       });
     }
   );

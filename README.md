@@ -30,8 +30,9 @@ Deployment -> []() **[Coming soon]**
 - **Methode:** POST
 - **Params:** No params
 - **Body:** email, password, firstname, lastname, [birthday, motto]
-- **Return:** user id
+- **Return:** id
 
+Return this new user id.
 Parameters in [square brackets] are all optional.  
 Create a new user and automatically bcrypt his password. This password cannot be modified later.
 
@@ -44,8 +45,9 @@ Create a new user and automatically bcrypt his password. This password cannot be
 - **Methode:** POST
 - **Params:** No params
 - **Body:** email, password
-- **Return:** user id
+- **Return:** id
 
+Return currently logged in user id.
 Create a jwt-cookie and a res.locals.user_id for the currently logged in user.
 
 ### Logout
@@ -80,7 +82,7 @@ Does not provide the password or the last-name.
 - **Body:** No body
 - **Return:** id, email, firstname, lastname, birthday, motto, createdAt, updatedAt
 
-Does not provide the password.  
+Return currently logged in user data. Does not provide the password.  
 Automatically selects the current user by his id contained in his authentication cookie.
 
 ### Edit current user profile
@@ -89,8 +91,9 @@ Automatically selects the current user by his id contained in his authentication
 - **Methode:** PUT
 - **Params:** No params
 - **Body:** [email, firstname, lastname, birthday, motto]
-- **Return:** uptaded user profile data without password
+- **Return:** id, email, firstname, lastname, birthday, motto, createdAt, updatedAt
 
+Return uptaded current user profile data without password.  
 Parameters in [square brackets] are all optional.  
 Cannot change the password or the id.  
 Automatically selects the current user by his id contained in his authentication cookie.
@@ -103,7 +106,7 @@ Automatically selects the current user by his id contained in his authentication
 - **Body:** No body
 - **Return:** deleted user profile data without password
 
-Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the information of the deleted user.  
+Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the informations of the deleted user.  
 Automatically selects the current user by his id contained in his authentication cookie.
 
 ## Conversations (& Messages) Routes
@@ -116,10 +119,12 @@ Automatically selects the current user by his id contained in his authentication
 - **Body:** userID
 - **Return:** id, [usersID], messages:[], createdAt, updatedAt
 
-**userID** is the id of the user that does NOT create the conversation. The user that create the conversation is the currently logged in user, and we automatically select his id by his jwt-cookie.  
-Return this new conversation data, of course the messages array is empty at the start.
+Return this new conversation data, of course the messages array is empty at the start.  
+!! **userID** is the id of the user that does NOT create the conversation. The user that create the conversation is the currently logged in user, and we automatically select his id by his jwt-cookie.
 
 - "userID" field must be a valid id.
+
+### Delete conversation
 
 ### Get all conversations
 
@@ -140,15 +145,68 @@ Automatically selects the current user by his id contained in his authentication
 - **Body:** No body
 - **Return:** id, [usersID], messages:[{authorID, text, date},...], createdAt, updatedAt
 
-Return conversation data. Conversations data contains their messages data too.  
+Return this conversation data if the current user have acces to this conversation. Conversations data contains their messages data too.  
 Automatically selects the current user by his id contained in his authentication cookie.
 
 - "id" parameter must be a valid conversation id.
 
 ### Get one message
 
-### Put add new message
+- **URL:** .../api/conv/one-msg/:conv_id/:msg_id
+- **Methode:** GET
+- **Params:** conv_id, msg_id
+- **Body:** No body
+- **Return:** authorID, text, date
 
-### Put edit message
+Return this message data if the current user have acces to this conversation.
+Automatically selects the current user by his id contained in his authentication cookie.
 
-### Put delete message
+- "conv_id" parameter must be a valid conversation id.
+- "msg_id" parameter must be a valid message id.
+
+### Add new message (PUT)
+
+- **URL:** .../api/conv/add-msg/:id/
+- **Methode:** PUT
+- **Params:** id
+- **Body:** text
+- **Return:** authorID, text, date
+
+Return this new message data.  
+Automatically set "authorID" by current user id contained in the authentication cookie.
+
+- "id" parameter must be a valid conversation id.
+
+- "text" field is required and must be a string.
+
+### Edit message (PUT)
+
+- **URL:** .../api/conv/modify-msg/:conv_id/:msg_id
+- **Methode:** PUT
+- **Params:** conv_id, msg_id
+- **Body:** text
+- **Return:** authorID, text, date
+
+Return this updated message data.  
+Cannot edit a message if current user id is not equal to the authorID of the message.  
+Automatically selects the current user by his id contained in his authentication cookie.
+
+- "conv_id" parameter must be a valid conversation id.
+- "msg_id" parameter must be a valid message id.
+
+- "text" field is required and must be a string.
+
+### Delete message (PUT)
+
+- **URL:** .../api/conv/delete-msg/:conv_id/:msg_id
+- **Methode:** PUT
+- **Params:** conv_id, msg_id
+- **Body:** No body
+- **Return:** authorID, text, date
+
+Return the deleted message data.  
+Cannot delete a message if current user id is not equal to the authorID of the message.  
+Automatically selects the current user by his id contained in his authentication cookie.
+
+- "conv_id" parameter must be a valid conversation id.
+- "msg_id" parameter must be a valid message id.
