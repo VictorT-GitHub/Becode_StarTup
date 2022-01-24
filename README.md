@@ -2,7 +2,7 @@
 
 Becode group project - Fullstack mobile-first messaging application
 
-Backend Stack : **MongoDB** - **Mongoose** - **JOI** - **Node.js** - **Express.js** - **JsonWebToken**
+Backend Stack : **MongoDB** - **Mongoose** - **JOI** - **Node.js** - **Express.js** - **JsonWebToken**  
 Frontend Stack : **React.js** - **[Coming soon]**
 
 Deployment -> []() **[Coming soon]**
