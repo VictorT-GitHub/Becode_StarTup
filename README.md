@@ -18,4 +18,13 @@ Deployment -> []() **[Coming soon]**
 
 ### User Routes
 
+##### Get all users
+
+- **Methode:** GET
+- **Params:** No params
+- **Return:** \_id, email, firstname, birthday, motto
+
+Provide all users except the currently logged in one.
+Does not provide the password or the last-name.
+
 ### Conversations (& Messages) Routes
