@@ -101,9 +101,33 @@ Automatically selects the current user by his id contained in his authentication
 - **Methode:** DELETE
 - **Params:** No params
 - **Body:** No body
-- **Return:** deleted user profile without password
+- **Return:** deleted user profile data without password
 
 Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the information of the deleted user.  
 Automatically selects the current user by his id contained in his authentication cookie.
 
 ## Conversations (& Messages) Routes
+
+### Post new conversation
+
+- **URL:** .../api/conv/add
+- **Methode:** POST
+- **Params:** No params
+- **Body:** userID
+- **Return:** conversation data
+
+**userID** is the id of the user that does NOT create the conversation. The user that create the conversation is the currently logged in user, and we automatically select his id by his jwt-cookie.
+
+- "userID" field must be a valid id.
+
+### Get all conversations
+
+### Get one conversation
+
+### Get one message
+
+### Put add new message
+
+### Put edit message
+
+### Put delete message
