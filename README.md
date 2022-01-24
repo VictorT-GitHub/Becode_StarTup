@@ -122,7 +122,27 @@ Automatically selects the current user by his id contained in his authentication
 
 ### Get all conversations
 
+- **URL:** .../api/conv/all
+- **Methode:** GET
+- **Params:** No params
+- **Body:** No body
+- **Return:** id, usersID, messages:[{authorID, text, date},...], createdAt, updatedAt
+
+Return all conversations data of the currently logged in user. Conversations data contains their messages data as well.  
+Automatically selects the current user by his id contained in his authentication cookie.
+
 ### Get one conversation
+
+- **URL:** .../api/conv/one/:id
+- **Methode:** GET
+- **Params:** id
+- **Body:** No body
+- **Return:** id, usersID, messages:[{authorID, text, date},...], createdAt, updatedAt
+
+Return conversation data. Conversations data contains their messages data too.  
+Automatically selects the current user by his id contained in his authentication cookie.
+
+- "id" parameter must be a valid conversation id.
 
 ### Get one message
 
