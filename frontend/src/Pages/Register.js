@@ -66,7 +66,6 @@ const Register = () => {
       .then((json) => console.log(json));
   };
 
-  console.log(body);
   return (
     <div className="registerPage">
       <form>

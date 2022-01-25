@@ -18,6 +18,8 @@ mongoose.connect(process.env.DB_URI, (err) => {
   if (err) console.log("MongoDB connection Error: " + err);
   else console.log("Connected to MongoDB");
 });
+// Cookies-problems resolver
+app.set("trust proxy", 1);
 
 // Express Config
 app.use(cors());
@@ -25,17 +27,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Cookies-problems resolver
-app.set("trust proxy", 1);
-
 // -- Routes --
 // API Home-page
 app.get("/api", (req, res) => res.send("Welcome on the StarTup API !"));
 
 // Middlewares to Controller Routers
 app.use("/api/auth", auth_router);
-app.use("/api/user", checkAuthToken, user_router);
-app.use("/api/conv", checkAuthToken, conv_router);
+app.use("/api/user", user_router);
+app.use("/api/conv", conv_router);
 
 // 404 Middleware
 app.use("/", (req, res) => res.status(404).send("Error404: page not found"));
