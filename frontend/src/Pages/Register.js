@@ -1,12 +1,27 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  let navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [birthday, setBirthday] = useState(Date);
   const [motto, setMotto] = useState("");
+
+  const [emailErr, setEmailErr] = useState(false);
+  const validEmail = new RegExp(
+    "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
+  );
+
+  const validate = (e) => {
+    e.preventDefault();
+    if (!validEmail.test(email)) {
+      setEmailErr(true);
+    }
+  };
 
   let body = {};
 
@@ -31,6 +46,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     await fetch("http://localhost:5000/api/auth/register", {
       method: "POST",
       headers: {
@@ -40,25 +56,30 @@ const Register = () => {
       body: JSON.stringify(body),
     })
       .then((res) => {
-        return res.json();
-      })
-      .catch((error) => {
-        console.log(error);
+        if (res.ok) {
+          navigate("/login");
+          return res.json();
+        } else {
+          console.log("Something went wrong");
+        }
       })
       .then((json) => console.log(json));
   };
-  console.log(body);
 
+  console.log(body);
   return (
     <div className="registerPage">
       <form>
         <p>Email</p>
         <input
           required
-          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          style={{
+            border: emailErr ? "1px solid red" : "1px solid black",
+          }}
         />
+        {emailErr && <div className="emailErr">Email must be valid </div>}
         <p>First Name</p>
         <input
           required
@@ -89,7 +110,16 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={(e) => handleRegister(e)}> Register </button>
+
+        <button
+          onClick={(e) => {
+            handleRegister(e);
+            validate(e);
+          }}
+        >
+          {" "}
+          Register{" "}
+        </button>
       </form>
     </div>
   );
