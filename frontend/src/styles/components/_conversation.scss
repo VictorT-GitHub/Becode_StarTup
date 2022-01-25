@@ -1,0 +1,33 @@
+.conversation {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  .bubble {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    overflow: hidden;
+    background-color: #a6bcff;
+    width: 120vw;
+    height: 25vh;
+    top: -90px;
+    border-radius: 100%;
+    object-fit: contain;
+  }
+  .top {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    * {
+      margin: 25px;
+    }
+  }
+}

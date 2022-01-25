@@ -16,8 +16,10 @@ const Login = (props) => {
     await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
+        withCredentials: true,
         "Content-Type": "application/json",
       },
+      credentials: "same-origin",
       body: JSON.stringify({
         email: email,
         password: password,

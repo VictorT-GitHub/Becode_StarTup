@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import IconAccount from "../assets/person_black_24dp.svg";
 
 const Conversation = (props) => {
   const { login } = props;
@@ -20,7 +21,12 @@ const Conversation = (props) => {
   return (
     <>
       {login ? (
-        <div>
+        <div className="conversation">
+          <div className="bubble"></div>
+          <div className="top">
+            <div>name</div>
+            <img src={IconAccount} alt="account-icon" />
+          </div>
           {data.map((elem) => (
             <div>{elem.usersID[0]} </div>
           ))}

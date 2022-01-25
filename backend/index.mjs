@@ -18,14 +18,14 @@ mongoose.connect(process.env.DB_URI, (err) => {
   if (err) console.log("MongoDB connection Error: " + err);
   else console.log("Connected to MongoDB");
 });
-// Cookies-problems resolver
-app.set("trust proxy", 1);
 
 // Express Config
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+// Cookies-problems resolver
+app.set("trust proxy", 1);
 
 // -- Routes --
 // API Home-page
