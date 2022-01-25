@@ -6,13 +6,14 @@ import JOIvalidation from "../validation/validation.mjs";
 // ------ CRUD CONVERSATION ------
 // POST new conversation
 const postNewConv = (req, res) => {
-  if (!req.body.userID)
-    return res.status(400).send("Error: 'userID' is required");
+  // ObjectId validation
+  if (!mongoose.Types.ObjectId.isValid(req.body.userID))
+    return res.status(400).send("Conversation id unknow: " + req.body.userID);
 
+  // New conversation
   const newConv = new convmodel({
     usersID: [req.body.userID, res.locals.user_id],
   });
-
   newConv.save((err, docs) => {
     if (err) res.status(400).send("Post new conversation ERROR: " + err);
     else res.status(201).send(docs);
@@ -20,7 +21,7 @@ const postNewConv = (req, res) => {
 };
 
 // DELETE (this new) conversation (if not used)
-// !! WORK IN PROGRESS !! et jsais pas du tout comment faire x)
+// !! WORK IN PROGRESS !! et jsais pas du tout comment faire ce que je veux :(
 const deleteNewConv = (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id))
     return res.status(400).send("Conversation id unknow: " + req.params.id);

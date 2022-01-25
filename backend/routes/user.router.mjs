@@ -9,10 +9,10 @@ router.get("/all", user_controller.getAllUsers);
 // GET current user (no password)
 router.get("/one", user_controller.getOneUser);
 
-// PUT current user (no password ?)
+// PUT current user (no password)
 router.put("/modify", user_controller.modifyOneUser);
 
-// DELETE current user
+// DELETE current user (no password)
 router.delete("/delete", user_controller.deleteOneUser);
 
 export default router;

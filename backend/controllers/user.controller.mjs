@@ -1,6 +1,7 @@
 import usermodel from "../models/user.model.mjs";
+import JOIvalidation from "../validation/validation.mjs";
 
-// GET all users (no lastname, no password) (sauf le current user)
+// GET all users (no lastname, no password) (without current user)
 const getAllUsers = async (req, res) => {
   try {
     const allUsers = await usermodel
@@ -28,6 +29,13 @@ const getOneUser = async (req, res) => {
 
 // PUT current user (no password)
 const modifyOneUser = async (req, res) => {
+  // JOI validation
+  const { error } = JOIvalidation.modifyUserCheck(req.body);
+  if (error)
+    return res
+      .status(400)
+      .send("Modify user Error: " + error.details[0].message);
+
   try {
     const user = await usermodel
       .findByIdAndUpdate(
@@ -50,7 +58,7 @@ const modifyOneUser = async (req, res) => {
   }
 };
 
-// DELETE current user
+// DELETE current user (no password)
 const deleteOneUser = async (req, res) => {
   try {
     const user = await usermodel
