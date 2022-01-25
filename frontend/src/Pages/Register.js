@@ -7,9 +7,32 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [birthday, setBirthday] = useState(Date);
   const [motto, setMotto] = useState("");
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    await fetch("http://localhost:5000/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        firstname: firstName,
+        lastname: lastName,
+        motto: motto,
+        birthday: birthday,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log("Something went wrong");
+        }
+      })
+      .then((json) => console.log(json));
   };
+  console.log(email, password, firstName, lastName);
 
   return (
     <div className="registerPage">
@@ -51,7 +74,7 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={(e) => handleRegister(e)}> submit </button>
+        <button onClick={(e) => handleRegister(e)}> Register </button>
       </form>
     </div>
   );
