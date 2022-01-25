@@ -22,7 +22,7 @@ mongoose.connect(process.env.DB_URI, (err) => {
 app.set("trust proxy", 1);
 
 // Express Config
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

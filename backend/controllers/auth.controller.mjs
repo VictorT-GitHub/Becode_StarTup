@@ -37,7 +37,12 @@ const userLogin = async (req, res) => {
     });
 
     // Cookies (with cookie-parser)
-    res.cookie("jwt", token, { maxAge: maxAge * 1000 });
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      maxAge: maxAge * 1000,
+    });
 
     // If everything ok, funct return the user id
     res.status(200).json({ user: user_id });
