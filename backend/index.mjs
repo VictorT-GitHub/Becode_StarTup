@@ -25,6 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// Cookies-problems resolver
+app.set("trust proxy", 1);
+
 // -- Routes --
 // API Home-page
 app.get("/api", (req, res) => res.send("Welcome on the StarTup API !"));
