@@ -5,7 +5,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  // const [birthday, setBirthday] = useState(Date);
+  const [birthday, setBirthday] = useState(Date);
   const [motto, setMotto] = useState("");
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -19,17 +19,19 @@ const Register = () => {
         password: password,
         firstname: firstName,
         lastname: lastName,
+        motto: motto,
+        birthday: birthday,
       }),
     })
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log("Something went wrong");
+        }
       })
-      .then((json) => console.log(json))
-      .catch((error) => {
-        throw error;
-      });
+      .then((json) => console.log(json));
   };
-
   console.log(email, password, firstName, lastName);
 
   return (
@@ -55,12 +57,12 @@ const Register = () => {
           onChange={(e) => setLastName(e.target.value)}
         />
         <p>Birthday</p>
-        {/* <input
+        <input
           type="date"
           required
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
-        /> */}
+        />
         <p>
           Motto <span>(optional) </span>
         </p>
@@ -72,7 +74,7 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={(e) => handleRegister(e)}> submit </button>
+        <button onClick={(e) => handleRegister(e)}> Register </button>
       </form>
     </div>
   );
