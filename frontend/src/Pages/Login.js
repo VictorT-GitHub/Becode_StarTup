@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import logo from "../assets/bold.png";
 import Home from "./Home.js";
 
-const Login = () => {
+const Login = (props) => {
+  let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useState(false);
   const [loginError, setLoginError] = useState(false);
+  const { login, setLogin } = props;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,6 +29,7 @@ const Login = () => {
           setLoginError(false);
           setPassword("");
           setEmail("");
+          navigate("/conversation");
           return res.json();
         } else {
           console.log("Something went wrong");
@@ -36,41 +40,33 @@ const Login = () => {
   };
 
   return (
-    <>
-      {login ? (
-        <Home />
-      ) : (
-        <div className="loginPage">
-          <img src={logo} alt="app-logo" />
-          <form>
-            <input
-              placeholder="Email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{
-                border: loginError ? "1px solid red" : "1px solid black",
-              }}
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={{
-                border: loginError ? "1px solid red" : "1px solid black",
-              }}
-            />
-            {loginError && (
-              <p className="error-login">Wrong Email or Password</p>
-            )}
-            <button onClick={(e) => handleLogin(e)}> Login </button>
-          </form>
-        </div>
-      )}
-    </>
+    <div className="loginPage">
+      <img src={logo} alt="app-logo" />
+      <form>
+        <input
+          placeholder="Email"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{
+            border: loginError ? "1px solid red" : "1px solid black",
+          }}
+        />
+        <input
+          placeholder="Password"
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{
+            border: loginError ? "1px solid red" : "1px solid black",
+          }}
+        />
+        {loginError && <p className="error-login">Wrong Email or Password</p>}
+        <button onClick={(e) => handleLogin(e)}> Login </button>
+      </form>
+    </div>
   );
 };
 
