@@ -7,6 +7,28 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [birthday, setBirthday] = useState(Date);
   const [motto, setMotto] = useState("");
+
+  let body = {};
+
+  if (motto) {
+    body = {
+      email: email,
+      password: password,
+      firstname: firstName,
+      lastname: lastName,
+      birthday: birthday,
+      motto: motto,
+    };
+  } else {
+    body = {
+      email: email,
+      password: password,
+      firstname: firstName,
+      lastname: lastName,
+      birthday: birthday,
+    };
+  }
+
   const handleRegister = async (e) => {
     e.preventDefault();
     await fetch("http://localhost:5000/api/auth/register", {
@@ -14,25 +36,18 @@ const Register = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        firstname: firstName,
-        lastname: lastName,
-        motto: motto,
-        birthday: birthday,
-      }),
+
+      body: JSON.stringify(body),
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log("Something went wrong");
-        }
+        return res.json();
+      })
+      .catch((error) => {
+        console.log(error);
       })
       .then((json) => console.log(json));
   };
-  console.log(email, password, firstName, lastName);
+  console.log(body);
 
   return (
     <div className="registerPage">
