@@ -146,7 +146,7 @@ Automatically selects the current user by his id contained in his authentication
 Post and return this new conversation data, of course the messages array is empty at the start.  
 !! **userID** is the id of the user that does NOT create the conversation. The user that create the conversation is the currently logged in user, and we automatically select his id by his jwt-cookie.
 
-- "userID" field must be a valid id.
+- "userID" field must be a valid user id.
 
 ### Delete conversation
 
