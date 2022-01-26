@@ -36,11 +36,13 @@ const userLogin = async (req, res) => {
       expiresIn: maxAge,
     });
 
+    res.locals.user_id = user_id;
+
     // Cookies (with cookie-parser)
     res.cookie("jwt", token, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
+      // httpOnly: true,
+      // sameSite: "none",
+      // secure: true,
       maxAge: maxAge * 1000,
     });
 
@@ -55,6 +57,7 @@ const userLogin = async (req, res) => {
 
 // GET LOGOUT (redirect to the homepage)
 const userLogout = (req, res) => {
+  res.locals.user_id = "";
   res.cookie("jwt", "", { maxAge: 1 }); // "Delete" the jwt cookie
   res.redirect("/api"); // Redirect to the homepage
 };

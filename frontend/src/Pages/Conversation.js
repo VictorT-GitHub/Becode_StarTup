@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import IconAccount from "../assets/person_black_24dp.svg";
+import AddConv from "../components/AddConv";
 import Chat from "../components/Chat";
 
 const Conversation = (props) => {
@@ -44,9 +45,12 @@ const Conversation = (props) => {
             <div>name</div>
             <img src={IconAccount} alt="account-icon" />
           </div>
-          {data.map((elem) => (
-            <Chat key={elem._id} />
-          ))}
+          {data.length > 0 ? (
+            data.map((elem) => <Chat key={elem._id} />)
+          ) : (
+            <p> You dont have conversation yet </p>
+          )}
+          <AddConv />
         </div>
       ) : (
         <div>you need to be logged before</div>
