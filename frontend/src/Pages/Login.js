@@ -13,10 +13,11 @@ const Login = (props) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:5000/api/auth/login", {
+    await fetch("https://star-tup-api.herokuapp.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        withCredentials: true,
       },
       body: JSON.stringify({
         email: email,

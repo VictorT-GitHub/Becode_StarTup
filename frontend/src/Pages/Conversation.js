@@ -4,8 +4,9 @@ const Conversation = (props) => {
   const { login } = props;
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/conv/all", {
+    fetch("https://star-tup-api.herokuapp.com/api/conv/all", {
       method: "GET",
+      headers: { withCredentials: true },
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
