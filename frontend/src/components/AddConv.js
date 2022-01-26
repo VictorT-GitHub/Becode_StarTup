@@ -28,6 +28,7 @@ const AddConv = () => {
               <img src={close} alt="close button" />
             </button>
             <input placeholder="Your Correspondent" />
+            <button className="btnCreateConv"> Create </button>
           </div>
         </div>
       ) : (
