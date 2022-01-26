@@ -16,7 +16,7 @@ const postNewUser = (req, res) => {
 
   newUser.save((err, docs) => {
     if (err) res.status(400).send("Register Error: " + err);
-    else res.status(201).send(docs._id);
+    else res.status(201).json({ user_id: docs._id });
   });
 };
 
