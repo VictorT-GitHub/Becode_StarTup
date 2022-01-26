@@ -38,9 +38,9 @@ const userLogin = async (req, res) => {
 
     // Cookies (with cookie-parser)
     res.cookie("jwt", token, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
+      // httpOnly: true,
+      // sameSite: "none",
+      // secure: true,
       maxAge: maxAge * 1000,
     });
 
