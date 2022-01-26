@@ -105,9 +105,10 @@ Automatically selects the current user by his id contained in his authentication
 - **Body:** No body
 - **Return:** id, email, firstname, lastname, birthday, motto, createdAt, updatedAt
 
-Delete and return deleted user profile data without password.  
-Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the informations of the deleted user.  
-Automatically selects the current user by his id contained in his authentication cookie.
+Delete the jwt authentication cookie for the current user.  
+Delete and return deleted current user profile data without password.  
+Automatically selects the current user by his id contained in his authentication cookie.  
+Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the informations of the deleted user.
 
 ## Conversations (& Messages) Routes
 
