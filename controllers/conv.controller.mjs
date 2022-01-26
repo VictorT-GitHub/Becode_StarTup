@@ -5,10 +5,19 @@ import JOIvalidation from "../validation/validation.mjs";
 
 // ------ CRUD CONVERSATION ------
 // POST new conversation
-const postNewConv = (req, res) => {
+const postNewConv = async (req, res) => {
   // ObjectId validation
   if (!mongoose.Types.ObjectId.isValid(req.body.userID))
     return res.status(400).send("Conversation id unknow: " + req.body.userID);
+
+  // Check if req.body.userID is a valid ObjectId from "users" collection
+
+  // Check if this conversation already exist
+  const conv = await convmodel.findOne({
+    usersID: { $all: [req.body.userID, res.locals.user_id] },
+  });
+  if (conv)
+    return res.status(400).send("Conversation already exist. ID: " + conv._id);
 
   // New conversation
   const newConv = new convmodel({

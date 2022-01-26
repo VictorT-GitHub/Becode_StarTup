@@ -1,7 +1,7 @@
 import jsonwebtoken from "jsonwebtoken";
 
 // --- Authentification Middleware ---
-// Check if the user have a jwt token and if is correct
+// Check if the user have a correct jwt token
 // Also set a locals var "user_id" with the user mongodb _id
 const checkAuthToken = (req, res, next) => {
   // Check if jwt cookie
