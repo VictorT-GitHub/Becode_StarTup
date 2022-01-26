@@ -24,7 +24,10 @@ const AddConv = () => {
       {displayCreateConv ? (
         <div className="pop-up">
           <div className="createConv">
-            <button className="close">
+            <button
+              className="close"
+              onClick={() => setDisplayCreateConv(false)}
+            >
               <img src={close} alt="close button" />
             </button>
             <input placeholder="Your Correspondent" />

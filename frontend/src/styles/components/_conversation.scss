@@ -30,6 +30,29 @@
       margin: 25px;
     }
   }
+  .allConv {
+    position: absolute;
+    bottom: 15vw;
+    width: 100%;
+    height: 77%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .oneConv {
+      margin: 10px;
+      background-color: #d3deff;
+      width: 96%;
+      height: 15vh;
+      padding: 12px;
+      border-radius: 10px;
+    }
+  }
   .addConv {
     position: absolute;
     bottom: 0;
@@ -45,7 +68,7 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.349);
+    background-color: rgba(0, 0, 0, 0.7);
     top: 0;
     left: 0;
     display: flex;
@@ -58,24 +81,32 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       .close {
         position: absolute;
         top: 0;
-        right: 12px;
+        right: 50px;
         width: 2em;
         height: 2em;
-        background-color: white;
-        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0);
+
         border: none;
       }
       input {
         border: none;
         width: 80%;
+        border-radius: 10px;
         padding: 20px;
       }
       .btnCreateConv {
         width: 80%;
         padding: 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #4d4dff;
+        margin: 20px;
+        color: white;
+        font-size: 1.2em;
       }
     }
   }
