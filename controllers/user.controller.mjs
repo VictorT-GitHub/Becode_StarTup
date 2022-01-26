@@ -61,6 +61,8 @@ const modifyOneUser = async (req, res) => {
 // DELETE current user (no password)
 const deleteOneUser = async (req, res) => {
   try {
+    res.cookie("jwt", "", { maxAge: 1 }); // "Delete" the jwt cookie
+
     const user = await usermodel
       .findByIdAndDelete(res.locals.user_id)
       .select("-__v -password");

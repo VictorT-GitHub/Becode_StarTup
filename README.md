@@ -48,7 +48,7 @@ Create a new user and automatically bcrypt his password. This password cannot be
 - **Return:** id
 
 Return currently logged in user id.  
-Create a jwt-cookie and a res.locals.user_id for the currently logged in user.
+Create a jwt authentication cookie for the user who logs in.
 
 ### Logout
 
@@ -56,10 +56,10 @@ Create a jwt-cookie and a res.locals.user_id for the currently logged in user.
 - **Methode:** GET
 - **Params:** No params
 - **Body:** No body
-- **Return:** Redirect to API homepage
+- **Return:** "You have been successfully logged out"
 
-Delete the jwt-cookie and the res.locals.user_id.  
-**A MODIFIER:** Redirect to the API homepage.
+Delete the jwt authentication cookie for the current user.  
+Automatically selects the current user by his id contained in his authentication cookie.
 
 ## User Routes
 
