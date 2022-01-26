@@ -53,7 +53,11 @@ const Conversation = (props) => {
             <img src={IconAccount} alt="account-icon" />
           </div>
           {data.length > 0 ? (
-            data.map((elem) => <Chat key={elem._id} />)
+            <div className="allConv">
+              {data.map((elem) => (
+                <Chat key={elem._id} />
+              ))}
+            </div>
           ) : (
             <p> You dont have conversation yet </p>
           )}
