@@ -45,7 +45,7 @@ const userLogin = async (req, res) => {
     });
 
     // If everything ok, funct return the user id
-    res.status(200).json({ user: user_id });
+    res.status(200).json({ user_id: user_id });
 
     // If error, funct return the error
   } catch (err) {
