@@ -56,7 +56,7 @@ const userLogin = async (req, res) => {
 // GET LOGOUT (redirect to the homepage)
 const userLogout = (req, res) => {
   res.cookie("jwt", "", { maxAge: 1 }); // "Delete" the jwt cookie
-  res.redirect("/api"); // Redirect to the homepage
+  res.status(200).send("You have been successfully logged out, goodbye !");
 };
 
 export default { postNewUser, userLogin, userLogout };
