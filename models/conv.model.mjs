@@ -3,10 +3,16 @@ import mongoose from "mongoose";
 // MONGOOSE SCHEMA
 const convschema = new mongoose.Schema(
   {
-    usersID: [mongoose.Types.ObjectId],
+    usersID: {
+      type: [mongoose.Types.ObjectId],
+      ref: "users",
+    },
     messages: [
       {
-        authorID: mongoose.Types.ObjectId,
+        authorID: {
+          type: mongoose.Types.ObjectId,
+          ref: "users",
+        },
         text: {
           type: String,
           max: 2000,

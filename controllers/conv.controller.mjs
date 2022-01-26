@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 import convmodel from "../models/conv.model.mjs";
+import usermodel from "../models/user.model.mjs";
 import JOIvalidation from "../validation/validation.mjs";
 
 // ------ CRUD CONVERSATION ------
@@ -8,9 +9,11 @@ import JOIvalidation from "../validation/validation.mjs";
 const postNewConv = async (req, res) => {
   // ObjectId validation
   if (!mongoose.Types.ObjectId.isValid(req.body.userID))
-    return res.status(400).send("Conversation id unknow: " + req.body.userID);
+    return res.status(400).send("User id unknow: " + req.body.userID);
 
   // Check if req.body.userID is a valid ObjectId from "users" collection
+  const user = await usermodel.findById(req.body.userID);
+  if (!user) return res.status(404).send("User not found: " + req.body.userID);
 
   // Check if this conversation already exist
   const conv = await convmodel.findOne({
