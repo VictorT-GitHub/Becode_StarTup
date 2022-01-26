@@ -16,9 +16,11 @@ const Login = (props) => {
     await fetch("https://star-tup-api.herokuapp.com/api/auth/login", {
       method: "POST",
       headers: {
+        withCredentials: true,
         "Content-Type": "application/json",
         withCredentials: true,
       },
+      credentials: "same-origin",
       body: JSON.stringify({
         email: email,
         password: password,

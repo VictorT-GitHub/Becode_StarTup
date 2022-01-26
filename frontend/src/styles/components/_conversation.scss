@@ -1,0 +1,82 @@
+.conversation {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  .bubble {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    overflow: hidden;
+    background-color: #a6bcff;
+    width: 120vw;
+    height: 25vh;
+    top: -90px;
+    border-radius: 100%;
+    object-fit: contain;
+  }
+  .top {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    * {
+      margin: 25px;
+    }
+  }
+  .addConv {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translate(50%, -50%);
+    border: none;
+    background-color: transparent;
+    img {
+      width: 10vw;
+    }
+  }
+  .pop-up {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.349);
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .createConv {
+      position: relative;
+      width: 100%;
+      height: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .close {
+        position: absolute;
+        top: 0;
+        right: 12px;
+        width: 2em;
+        height: 2em;
+        background-color: white;
+        border-radius: 12px;
+        border: none;
+      }
+      input {
+        border: none;
+        width: 80%;
+        padding: 20px;
+      }
+      .btnCreateConv {
+        width: 80%;
+        padding: 20px;
+      }
+    }
+  }
+}

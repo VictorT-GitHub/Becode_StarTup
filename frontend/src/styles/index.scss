@@ -4,6 +4,7 @@
 @import "./components/home";
 @import "./components/login";
 @import "./components/register";
+@import "./components/conversation";
 
 * {
   margin: 0;
@@ -19,4 +20,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+button,
+input {
+  font-family: "Montserrat", sans-serif !important;
 }

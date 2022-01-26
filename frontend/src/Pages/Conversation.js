@@ -1,22 +1,63 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import IconAccount from "../assets/person_black_24dp.svg";
+import AddConv from "../components/AddConv";
+import Chat from "../components/Chat";
 
 const Conversation = (props) => {
   const { login } = props;
+  const [data, setData] = useState([]);
+  const [infoUser, setInfoUser] = useState([]);
 
+<<<<<<< HEAD
   useEffect(() => {
     fetch("https://star-tup-api.herokuapp.com/api/conv/all", {
       method: "GET",
       headers: { withCredentials: true },
+=======
+  useEffect(async () => {
+    await fetch("http://localhost:5000/api/conv/all", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+>>>>>>> c6a470eed6b29a055763b19d01788a50694a6940
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setData(data);
+        console.log(data);
+      });
   }, [login]);
+
+  //   useEffect(async () => {
+  //     await fetch("http://localhost:5000/api/user/one", {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setInfoUser(data);
+  //         console.log(infoUser);
+  //       });
+  //   }, []);
 
   return (
     <>
       {login ? (
-        <div>
-          <h1>test</h1>
+        <div className="conversation">
+          <div className="bubble"></div>
+          <div className="top">
+            <div>name</div>
+            <img src={IconAccount} alt="account-icon" />
+          </div>
+          {data.length > 0 ? (
+            data.map((elem) => <Chat key={elem._id} />)
+          ) : (
+            <p> You dont have conversation yet </p>
+          )}
+          <AddConv />
         </div>
       ) : (
         <div>you need to be logged before</div>
