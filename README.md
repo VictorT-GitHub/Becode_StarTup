@@ -48,7 +48,7 @@ Create a new user and automatically bcrypt his password. This password cannot be
 - **Return:** id
 
 Return currently logged in user id.  
-Create a jwt-cookie and a res.locals.user_id for the currently logged in user.
+Create a jwt authentication cookie for the user who logs in.
 
 ### Logout
 
@@ -56,10 +56,10 @@ Create a jwt-cookie and a res.locals.user_id for the currently logged in user.
 - **Methode:** GET
 - **Params:** No params
 - **Body:** No body
-- **Return:** Redirect to API homepage
+- **Return:** "You have been successfully logged out"
 
-Delete the jwt-cookie and the res.locals.user_id.  
-**A MODIFIER:** Redirect to the API homepage.
+Delete the jwt authentication cookie for the current user.  
+Automatically selects the current user by his id contained in his authentication cookie.
 
 ## User Routes
 
@@ -105,9 +105,10 @@ Automatically selects the current user by his id contained in his authentication
 - **Body:** No body
 - **Return:** id, email, firstname, lastname, birthday, motto, createdAt, updatedAt
 
-Delete and return deleted user profile data without password.  
-Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the informations of the deleted user.  
-Automatically selects the current user by his id contained in his authentication cookie.
+Delete the jwt authentication cookie for the current user.  
+Delete and return deleted current user profile data without password.  
+Automatically selects the current user by his id contained in his authentication cookie.  
+**Deleting a user does not delete their messages and conversations BUT it will then be impossible to associate these messages with the informations of the deleted user.**
 
 ## Conversations (& Messages) Routes
 
@@ -146,7 +147,7 @@ Automatically selects the current user by his id contained in his authentication
 Post and return this new conversation data, of course the messages array is empty at the start.  
 !! **userID** is the id of the user that does NOT create the conversation. The user that create the conversation is the currently logged in user, and we automatically select his id by his jwt-cookie.
 
-- "userID" field must be a valid user id.
+- "userID" field must be a valid id.
 
 ### Delete conversation
 
