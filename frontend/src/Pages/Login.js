@@ -14,7 +14,7 @@ const Login = (props) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    await fetch("https://star-tup-api.herokuapp.com/api/auth/login", {
+    await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
         withCredentials: true,
@@ -41,7 +41,8 @@ const Login = (props) => {
         }
       })
       .then((json) => {
-        setCookie("jwt", json.user);
+        console.log(json.user_id);
+        setCookie("jwt", json.user_id);
         console.log(cookies);
       });
   };

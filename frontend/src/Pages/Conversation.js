@@ -9,7 +9,7 @@ const Conversation = (props) => {
   const [infoUser, setInfoUser] = useState([]);
 
   useEffect(() => {
-    fetch("https://star-tup-api.herokuapp.com/api/conv/all", {
+    fetch("http://localhost:5000/api/conv/all", {
       method: "GET",
       headers: { withCredentials: true },
     })
@@ -46,7 +46,7 @@ const Conversation = (props) => {
           {data.length > 0 ? (
             <div className="allConv">
               {data.map((elem) => (
-                <Chat key={elem._id} />
+                <Chat data={elem} key={elem._id} />
               ))}
             </div>
           ) : (
