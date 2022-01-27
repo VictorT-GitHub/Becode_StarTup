@@ -72,7 +72,7 @@ const getOneConvFromUser = (req, res) => {
         else res.status(200).send(docs);
       }
     )
-    .populate({ path: "usersID", select: "-password -__v -updatedAt" });
+    .populate("usersID", "-password -__v -updatedAt");
 };
 
 // ------ CRUD MESSAGE ------
@@ -107,7 +107,7 @@ const getOneMsg = (req, res) => {
         return res.status(200).send(message);
       }
     )
-    .populate("messages", "authorID");
+    .populate("messages.authorID");
 };
 
 // PUT add msg (to one conversation from current user)
