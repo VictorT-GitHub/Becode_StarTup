@@ -8,19 +8,10 @@ const Conversation = (props) => {
   const [data, setData] = useState([]);
   const [infoUser, setInfoUser] = useState([]);
 
-<<<<<<< HEAD
   useEffect(() => {
     fetch("https://star-tup-api.herokuapp.com/api/conv/all", {
       method: "GET",
       headers: { withCredentials: true },
-=======
-  useEffect(async () => {
-    await fetch("http://localhost:5000/api/conv/all", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
->>>>>>> c6a470eed6b29a055763b19d01788a50694a6940
     })
       .then((res) => res.json())
       .then((data) => {

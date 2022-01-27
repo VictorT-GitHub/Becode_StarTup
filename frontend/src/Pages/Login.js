@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 import logo from "../assets/bold.png";
-import Home from "./Home.js";
 
 const Login = (props) => {
+  const [cookies, setCookie] = useCookies(["jwt"]);
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +19,6 @@ const Login = (props) => {
       headers: {
         withCredentials: true,
         "Content-Type": "application/json",
-        withCredentials: true,
       },
       credentials: "same-origin",
       body: JSON.stringify({
@@ -32,6 +32,7 @@ const Login = (props) => {
           setLoginError(false);
           setPassword("");
           setEmail("");
+
           navigate("/conversation");
           return res.json();
         } else {
@@ -39,7 +40,10 @@ const Login = (props) => {
           setLoginError(true);
         }
       })
-      .then((json) => console.log(json));
+      .then((json) => {
+        setCookie("jwt", json.user);
+        console.log(cookies);
+      });
   };
 
   return (
