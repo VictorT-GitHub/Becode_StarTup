@@ -86,20 +86,24 @@ const getOneMsg = (req, res) => {
       .send("Error message id unknow: " + req.params.msg_id);
 
   // Select the conversation
-  convmodel.findOne(
-    { usersID: { $all: [res.locals.user_id] }, _id: req.params.conv_id },
-    (err, conv) => {
-      if (err) return res.status(400).send("Get message Error: " + err);
-      if (!conv) return res.status(404).send("Conversation not found");
+  convmodel
+    .findOne(
+      { usersID: { $all: [res.locals.user_id] }, _id: req.params.conv_id },
+      (err, conv) => {
+        if (err) return res.status(400).send("Get message Error: " + err);
+        if (!conv) return res.status(404).send("Conversation not found");
 
-      // Select the message
-      const message = conv.messages.find((msg) => msg._id == req.params.msg_id);
-      if (!message) return res.status(404).send("Message not found");
+        // Select the message
+        const message = conv.messages.find(
+          (msg) => msg._id == req.params.msg_id
+        );
+        if (!message) return res.status(404).send("Message not found");
 
-      // Return the message data
-      return res.status(200).send(message);
-    }
-  );
+        // Return the message data
+        return res.status(200).send(message);
+      }
+    )
+    .populate("firstname", "email");
 };
 
 // PUT add msg (to one conversation from current user)
