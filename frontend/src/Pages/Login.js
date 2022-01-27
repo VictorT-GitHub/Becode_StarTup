@@ -1,49 +1,36 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-
+import axios from "axios";
 import logo from "../assets/bold.png";
 
 const Login = (props) => {
-  const [cookies, setCookie] = useCookies(["jwt"]);
   let navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
+  const [error, setError] = useState("");
   const { login, setLogin } = props;
+  const data = {
+    email: email,
+    password: password,
+  };
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    await fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: {
+    axios
+      .post("https://star-tup-api.herokuapp.com/api/auth/login", data, {
         withCredentials: true,
-        "Content-Type": "application/json",
-      },
-      credentials: "same-origin",
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          setLogin(true);
-          setLoginError(false);
-          setPassword("");
-          setEmail("");
-
-          navigate("/conversation");
-          return res.json();
-        } else {
-          console.log("Something went wrong");
-          setLoginError(true);
-        }
       })
-      .then((json) => {
-        console.log(json.user_id);
-        setCookie("jwt", json.user_id);
-        console.log(cookies);
+      .then((res) => {
+        setLogin(true);
+        setLoginError(false);
+        navigate("/conversation");
+        console.log(res);
+      })
+      .catch((err) => {
+        setLoginError(true);
+        setError(err.response.data);
       });
   };
 

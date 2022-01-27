@@ -4,6 +4,7 @@ import Conversation from "./Pages/Conversation";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
+import OneConversation from "./Pages/OneConversation";
 import Register from "./Pages/Register";
 
 function App() {
@@ -20,6 +21,10 @@ function App() {
         <Route
           path="/conversation"
           element={<Conversation login={login} />}
+        ></Route>
+        <Route
+          path="/oneconversation"
+          element={<OneConversation login={login} />}
         ></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
