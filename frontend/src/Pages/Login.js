@@ -26,7 +26,6 @@ const Login = (props) => {
         setLogin(true);
         setLoginError(false);
         navigate("/conversation");
-        console.log(res);
       })
       .catch((err) => {
         setLoginError(true);
