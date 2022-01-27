@@ -45,12 +45,20 @@
       display: none;
     }
     .oneConv {
+      position: relative;
       margin: 10px;
       background-color: #d3deff;
       width: 96%;
-      height: 15vh;
+      min-height: 15vh;
       padding: 12px;
       border-radius: 10px;
+      text-decoration: none;
+      color: black;
+      .date {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+      }
     }
   }
   .addConv {

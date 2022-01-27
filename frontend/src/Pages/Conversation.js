@@ -27,9 +27,11 @@ const Conversation = (props) => {
         withCredentials: true,
       })
       .then((res) => {
+        console.log(res.data);
         setInfoUser(res.data);
         console.log(infoUser);
-      });
+      })
+      .catch((err) => console.log(err.response.data));
   }, []);
 
   return (
