@@ -55,7 +55,7 @@ const getAllConvsFromUser = (req, res) => {
       if (err) res.status(400).send("Get user conversations ERROR: " + err);
       else res.status(200).send(docs);
     })
-    .populate("usersID", "email");
+    .populate("usersID", "firstname", "email", "motto");
 };
 
 // GET one conversation (from current user)
@@ -72,7 +72,7 @@ const getOneConvFromUser = (req, res) => {
         else res.status(200).send(docs);
       }
     )
-    .populate("usersID", "email");
+    .populate("usersID", "firstname", "email", "motto");
 };
 
 // ------ CRUD MESSAGE ------
@@ -107,7 +107,7 @@ const getOneMsg = (req, res) => {
         return res.status(200).send(message);
       }
     )
-    .populate("authorID", "email");
+    .populate("messages", "firstname", "email", "motto");
 };
 
 // PUT add msg (to one conversation from current user)
