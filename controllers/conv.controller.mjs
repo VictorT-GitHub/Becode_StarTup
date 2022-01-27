@@ -55,7 +55,8 @@ const getAllConvsFromUser = (req, res) => {
       if (err) res.status(400).send("Get user conversations ERROR: " + err);
       else res.status(200).send(docs);
     })
-    .populate("usersID", "-password -__v -updatedAt");
+    .populate("usersID", "-_id -password -__v -updatedAt")
+    .populate("messages.authorID", "-_id -password -__v -updatedAt");
 };
 
 // GET one conversation (from current user)
@@ -72,8 +73,8 @@ const getOneConvFromUser = (req, res) => {
         else res.status(200).send(docs);
       }
     )
-    .populate("usersID", "-password -__v -updatedAt")
-    .populate("messages.authorID", "-password -__v -updatedAt");
+    .populate("usersID", "-_id -password -__v -updatedAt")
+    .populate("messages.authorID", "-_id -password -__v -updatedAt");
 };
 
 // ------ CRUD MESSAGE ------
@@ -108,7 +109,7 @@ const getOneMsg = (req, res) => {
         return res.status(200).send(message);
       }
     )
-    .populate("messages.authorID", "-password -__v -updatedAt");
+    .populate("messages.authorID", "-_id -password -__v -updatedAt");
 };
 
 // PUT add msg (to one conversation from current user)

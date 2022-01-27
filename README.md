@@ -121,7 +121,8 @@ Deleting a user does not delete their messages and conversations BUT it will the
 - **Return:** id, [usersID], messages:[{authorID, text, date},...], createdAt, updatedAt
 
 Return all conversations data of the currently logged in user. Conversations data contains their messages data as well.  
-Automatically selects the current user by his id contained in his authentication cookie.
+Automatically selects the current user by his id contained in his authentication cookie.  
+AuthorID and the two UsersID provide users email, firstname, lastname, birthday, motto, createdAt.
 
 ### Get one conversation
 
@@ -132,7 +133,8 @@ Automatically selects the current user by his id contained in his authentication
 - **Return:** id, [usersID], messages:[{authorID, text, date},...], createdAt, updatedAt
 
 Return this conversation data if the current user have acces to this conversation. Conversations data contains their messages data too.  
-Automatically selects the current user by his id contained in his authentication cookie.
+Automatically selects the current user by his id contained in his authentication cookie.  
+AuthorID and the two UsersID provide users email, firstname, lastname, birthday, motto, createdAt.
 
 - "id" parameter must be a valid conversation id.
 
@@ -171,7 +173,8 @@ Automatically selects the current user by his id contained in his authentication
 - **Return:** authorID, text, date
 
 Return this message data if the current user have acces to this conversation.  
-Automatically selects the current user by his id contained in his authentication cookie.
+Automatically selects the current user by his id contained in his authentication cookie.  
+AuthorID provide user email, firstname, lastname, birthday, motto, createdAt.
 
 - "conv_id" parameter must be a valid conversation id.
 - "msg_id" parameter must be a valid message id.
