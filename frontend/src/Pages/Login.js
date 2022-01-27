@@ -1,45 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 import logo from "../assets/bold.png";
-import Home from "./Home.js";
 
 const Login = (props) => {
   let navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
+  const [error, setError] = useState("");
   const { login, setLogin } = props;
+  const data = {
+    email: email,
+    password: password,
+  };
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    await fetch("https://star-tup-api.herokuapp.com/api/auth/login", {
-      method: "POST",
-      headers: {
+    axios
+      .post("https://star-tup-api.herokuapp.com/api/auth/login", data, {
         withCredentials: true,
-        "Content-Type": "application/json",
-        withCredentials: true,
-      },
-      credentials: "same-origin",
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          setLogin(true);
-          setLoginError(false);
-          setPassword("");
-          setEmail("");
-          navigate("/conversation");
-          return res.json();
-        } else {
-          console.log("Something went wrong");
-          setLoginError(true);
-        }
       })
-      .then((json) => console.log(json));
+      .then((res) => {
+        setLogin(true);
+        setLoginError(false);
+        navigate("/conversation");
+        console.log(res);
+      })
+      .catch((err) => {
+        setLoginError(true);
+        setError(err.response.data);
+      });
   };
 
   return (

@@ -5,7 +5,7 @@ import close from "../assets/close.svg";
 const AddConv = () => {
   const [displayCreateConv, setDisplayCreateConv] = useState(false);
   //   const createConv = async () => {
-  //     await fetch("http://localhost:5000/api/conv/add", {
+  //     await fetch("https://star-tup-api.herokuapp.com/api/conv/add", {
   //       method: "POST",
   //       headers: {
   //         withCredentials: true,
