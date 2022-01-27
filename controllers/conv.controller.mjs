@@ -50,10 +50,12 @@ const deleteNewConv = (req, res) => {
 // GET all conversations (from current user)
 const getAllConvsFromUser = (req, res) => {
   // $all select docs where the array-field contains all values specified
-  convmodel.find({ usersID: { $all: [res.locals.user_id] } }, (err, docs) => {
-    if (err) res.status(400).send("Get user conversations ERROR: " + err);
-    else res.status(200).send(docs);
-  });
+  convmodel
+    .find({ usersID: { $all: [res.locals.user_id] } }, (err, docs) => {
+      if (err) res.status(400).send("Get user conversations ERROR: " + err);
+      else res.status(200).send(docs);
+    })
+    .populate("firstname", "email");
 };
 
 // GET one conversation (from current user)
@@ -62,13 +64,15 @@ const getOneConvFromUser = (req, res) => {
     return res.status(400).send("Conversation id unknow: " + req.params.id);
 
   // $all select docs where the array-field contains all values specified
-  convmodel.find(
-    { usersID: { $all: [res.locals.user_id] }, _id: req.params.id },
-    (err, docs) => {
-      if (err) res.status(400).send("Get conversation ERROR: " + err);
-      else res.status(200).send(docs);
-    }
-  );
+  convmodel
+    .find(
+      { usersID: { $all: [res.locals.user_id] }, _id: req.params.id },
+      (err, docs) => {
+        if (err) res.status(400).send("Get conversation ERROR: " + err);
+        else res.status(200).send(docs);
+      }
+    )
+    .populate("firstname", "email");
 };
 
 // ------ CRUD MESSAGE ------
