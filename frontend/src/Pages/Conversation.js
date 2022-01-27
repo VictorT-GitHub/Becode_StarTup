@@ -9,20 +9,21 @@ const Conversation = (props) => {
   const [infoUser, setInfoUser] = useState([]);
   const [conversationData, setConversationData] = useState([]);
 
-  useEffect(async () => {
-    await axios
+  useEffect(() => {
+    axios
       .get("https://star-tup-api.herokuapp.com/api/conv/all", {
         withCredentials: true,
       })
       .then((res) => {
         setConversationData(res.data);
+        console.log(res.data);
         console.log(conversationData);
       })
       .catch((err) => console.log(err.response.data));
   }, [login]);
 
-  useEffect(async () => {
-    await axios
+  useEffect(() => {
+    axios
       .get("https://star-tup-api.herokuapp.com/api/user/one", {
         withCredentials: true,
       })
