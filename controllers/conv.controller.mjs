@@ -55,7 +55,7 @@ const getAllConvsFromUser = (req, res) => {
       if (err) res.status(400).send("Get user conversations ERROR: " + err);
       else res.status(200).send(docs);
     })
-    .populate("usersID");
+    .populate("usersID", "-password -__v -updatedAt");
 };
 
 // GET one conversation (from current user)
@@ -72,7 +72,7 @@ const getOneConvFromUser = (req, res) => {
         else res.status(200).send(docs);
       }
     )
-    .populate("usersID");
+    .populate({ path: "usersID", select: "-password -__v -updatedAt" });
 };
 
 // ------ CRUD MESSAGE ------
