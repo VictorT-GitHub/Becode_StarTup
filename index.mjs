@@ -19,6 +19,8 @@ mongoose.connect(process.env.DB_URI, (err) => {
   else console.log("Connected to MongoDB");
 });
 
+// PUSHER Config
+
 // -- Configurations --
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
@@ -31,7 +33,7 @@ app.set("trust proxy", 1);
 app.get("/api", (req, res) => res.send("Welcome on the StarTup API !"));
 
 // Middlewares to Controller Routers
-// + authentication middlewares
+// + authentication middleware
 app.use("/api/auth", auth_router);
 app.use("/api/user", checkAuthToken, user_router);
 app.use("/api/conv", checkAuthToken, conv_router);
