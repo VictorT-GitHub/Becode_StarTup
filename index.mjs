@@ -45,7 +45,14 @@ pusher.trigger("my-channel", "my-event", {
 
 // Connect pusher to mongoDB
 mongoose.connection.once("open", () => {
-  console.log("coucou c'est moi hihihi");
+  console.log("Pusher connected to MongoDB");
+
+  const convCollection = mongoose.connection.collection("conversations");
+  const changeStream = convCollection.watch();
+
+  changeStream.on("change", (e) => {
+    console.log(e);
+  });
 });
 
 // -- Routes --
@@ -62,6 +69,5 @@ app.use("/api/conv", checkAuthToken, conv_router);
 app.use("/", (req, res) => res.status(404).send("Error404: page not found"));
 
 // -- Server --
-app.listen(PORT, () =>
-  console.log(`Server started: http://localhost:${PORT}/`)
-);
+app.listen(PORT, () => console.log(`Heroku server started on port : ${PORT}`));
+//`Server started: http://localhost:${PORT}/`
