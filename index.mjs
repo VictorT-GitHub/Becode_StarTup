@@ -50,7 +50,7 @@ mongoose.connection.once("open", () => {
 
     // (Put) Add/edit/delete message
     if (change.operationType === "update") {
-      pusher.trigger("msgs", "updated", { convID: change.documentKey });
+      pusher.trigger("msgs", "updated", change.documentKey);
     }
 
     // Post new conversation
@@ -60,7 +60,7 @@ mongoose.connection.once("open", () => {
 
     // Delete conversation
     if (change.operationType === "delete") {
-      pusher.trigger("convs", "deleted", { convID: change.documentKey });
+      pusher.trigger("convs", "deleted", change.documentKey);
     }
   });
 });
