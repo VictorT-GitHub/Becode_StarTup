@@ -5,7 +5,6 @@ import AddConv from "../components/AddConv";
 import Chat from "../components/Chat";
 
 const Conversation = (props) => {
-  const { login } = props;
   const [infoUser, setInfoUser] = useState([]);
   const [conversationData, setConversationData] = useState([]);
 
@@ -18,7 +17,7 @@ const Conversation = (props) => {
         setConversationData(res.data);
       })
       .catch((err) => console.log(err.response.data));
-  }, [login]);
+  }, []);
 
   useEffect(() => {
     axios
@@ -33,27 +32,23 @@ const Conversation = (props) => {
 
   return (
     <>
-      {login ? (
-        <div className="conversation">
-          <div className="bubble"></div>
-          <div className="top">
-            <div> {infoUser.firstname} </div>
-            <img src={IconAccount} alt="account-icon" />
-          </div>
-          {conversationData.length > 0 ? (
-            <div className="allConv">
-              {conversationData.map((elem) => (
-                <Chat conversationData={elem} key={elem._id} />
-              ))}
-            </div>
-          ) : (
-            <p> You dont have conversation yet </p>
-          )}
-          <AddConv />
+      <div className="conversation">
+        <div className="bubble"></div>
+        <div className="top">
+          <div> {infoUser.firstname} </div>
+          <img src={IconAccount} alt="account-icon" />
         </div>
-      ) : (
-        <div>you need to be logged before</div>
-      )}
+        {conversationData.length > 0 ? (
+          <div className="allConv">
+            {conversationData.map((elem) => (
+              <Chat conversationData={elem} key={elem._id} />
+            ))}
+          </div>
+        ) : (
+          <p> You dont have conversation yet </p>
+        )}
+        <AddConv />
+      </div>
     </>
   );
 };
