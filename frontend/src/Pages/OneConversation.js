@@ -7,11 +7,7 @@ const OneConversation = (props) => {
   const convId = useParams();
   const [conversationData, setConversationData] = useState([]);
   let message;
-  let usersID = conversationData.usersID;
-  console.log(usersID);
-  // usersID.forEach((element) => {
-  //   console.log(element);
-  // });
+  let usersID;
 
   useEffect(async () => {
     await axios
@@ -20,9 +16,14 @@ const OneConversation = (props) => {
       })
       .then((res) => {
         console.log(res.data[0]);
-        setConversationData(res.data[0]);
+        setConversationData(res.data);
         console.log(conversationData);
         message = conversationData.messages;
+        usersID = conversationData[0].usersID;
+        console.log(usersID);
+        let index = usersID.findIndex((x) => x._id !== currentUser);
+        console.log(currentUser);
+        console.log(index);
         console.log(message);
       })
       .catch((err) => console.log(err.response.data));
