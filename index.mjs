@@ -50,7 +50,7 @@ mongoose.connection.once("open", () => {
 
     // (Put) Add/edit/delete message
     if (change.operationType === "update") {
-      pusher.trigger("msgs", "updated", change.updateDescription.updatedFields);
+      pusher.trigger("msgs", "updated", change.clusterTime);
     }
 
     // Post new conversation
