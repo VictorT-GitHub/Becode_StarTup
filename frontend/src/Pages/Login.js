@@ -10,7 +10,7 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
   const [error, setError] = useState("");
-  const { login, setLogin } = props;
+
   const data = {
     email: email,
     password: password,
@@ -23,7 +23,6 @@ const Login = (props) => {
         withCredentials: true,
       })
       .then((res) => {
-        setLogin(true);
         setLoginError(false);
         navigate("/conversation");
       })
