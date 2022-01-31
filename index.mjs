@@ -50,8 +50,18 @@ mongoose.connection.once("open", () => {
   const convCollection = mongoose.connection.collection("conversations");
   const changeStream = convCollection.watch();
 
-  changeStream.on("change", (e) => {
-    console.log(e);
+  changeStream.on("change", (change) => {
+    console.log(change);
+
+    if (change.operationType === "insert") {
+      pusher.trigger("convs", "inserted", { convID: change.fullDocument._id });
+    }
+
+    // if (change.operationType === "update") {
+    // }
+
+    // if (change.operationType === "delete") {
+    // }
   });
 });
 
