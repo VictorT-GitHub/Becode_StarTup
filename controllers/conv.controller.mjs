@@ -66,7 +66,7 @@ const getOneConvFromUser = (req, res) => {
 
   // $all select docs where the array-field contains all values specified
   convmodel
-    .find(
+    .findOne(
       { usersID: { $all: [res.locals.user_id] }, _id: req.params.id },
       (err, docs) => {
         if (err) res.status(400).send("Get conversation ERROR: " + err);
