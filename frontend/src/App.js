@@ -23,7 +23,7 @@ function App() {
           element={<Conversation login={login} />}
         ></Route>
         <Route
-          path="/oneconversation"
+          path="/conversation/:id"
           element={<OneConversation login={login} />}
         ></Route>
         <Route path="*" element={<NotFound />} />

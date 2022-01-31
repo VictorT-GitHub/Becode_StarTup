@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 
 const Chat = (props) => {
   const { conversationData } = props;
-
   const messages = conversationData.messages;
   const lastMessage = messages[messages.length - 1];
-  console.log(conversationData);
   let MyDateString;
   if (lastMessage) {
     let date = new Date(lastMessage.date);
@@ -20,7 +18,7 @@ const Chat = (props) => {
   }
 
   return (
-    <Link to={"/oneconversation"} className="oneConv">
+    <Link to={conversationData._id} className="oneConv">
       <h5> {conversationData.usersID[0].firstname} </h5>
       {lastMessage ? (
         <>
