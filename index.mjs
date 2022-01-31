@@ -55,12 +55,7 @@ mongoose.connection.once("open", () => {
 
     // Post new conversation
     if (change.operationType === "insert") {
-      pusher.trigger("convs", "inserted", { convID: change.fullDocument._id });
-    }
-
-    // Delete conversation
-    if (change.operationType === "delete") {
-      pusher.trigger("convs", "deleted", change.clusterTime);
+      pusher.trigger("convs", "inserted", change.fullDocument);
     }
   });
 });
