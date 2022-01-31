@@ -39,29 +39,29 @@ const pusher = new Pusher({
   useTLS: true,
 });
 
-pusher.trigger("my-channel", "my-event", {
-  message: "hello world",
-});
-
-// Connect pusher to mongoDB
+// Wait mongoDB connection
 mongoose.connection.once("open", () => {
-  console.log("Pusher connected to MongoDB");
-
+  // Change-Stream on "conversations" collection
   const convCollection = mongoose.connection.collection("conversations");
   const changeStream = convCollection.watch();
 
   changeStream.on("change", (change) => {
     console.log(change);
 
+    // (Put) Add/edit/delete message
+    if (change.operationType === "update") {
+      pusher.trigger("msgs", "updated", { convID: change.documentKey });
+    }
+
+    // Post new conversation
     if (change.operationType === "insert") {
       pusher.trigger("convs", "inserted", { convID: change.fullDocument._id });
     }
 
-    // if (change.operationType === "update") {
-    // }
-
-    // if (change.operationType === "delete") {
-    // }
+    // Delete conversation
+    if (change.operationType === "delete") {
+      pusher.trigger("convs", "deleted", { convID: change.documentKey });
+    }
   });
 });
 
