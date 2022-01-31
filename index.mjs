@@ -55,7 +55,7 @@ mongoose.connection.once("open", () => {
 
     // Post new conversation
     if (change.operationType === "insert") {
-      pusher.trigger("convs", "inserted", change.fullDocument);
+      pusher.trigger("convs", "inserted", change.clusterTime);
     }
   });
 });
