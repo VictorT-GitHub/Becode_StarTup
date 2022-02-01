@@ -5,6 +5,7 @@ import AddConv from "../components/AddConv";
 import Chat from "../components/Chat";
 
 const Conversation = (props) => {
+  let { currentUser } = props;
   const [infoUser, setInfoUser] = useState([]);
   const [conversationData, setConversationData] = useState([]);
 
@@ -41,7 +42,11 @@ const Conversation = (props) => {
         {conversationData.length > 0 ? (
           <div className="allConv">
             {conversationData.map((elem) => (
-              <Chat conversationData={elem} key={elem._id} />
+              <Chat
+                conversationData={elem}
+                key={elem._id}
+                currentUser={currentUser}
+              />
             ))}
           </div>
         ) : (

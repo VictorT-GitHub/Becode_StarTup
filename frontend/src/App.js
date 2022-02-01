@@ -29,7 +29,10 @@ function App() {
         <Route path="/" exact={true} element={<Home />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/conversation" element={<Conversation />}></Route>
+        <Route
+          path="/conversation"
+          element={<Conversation currentUser={currentUser} />}
+        ></Route>
         <Route
           path="/conversation/:id"
           element={<OneConversation currentUser={currentUser} />}
