@@ -1,5 +1,4 @@
 import Pusher from "pusher";
-// const Pusher = require("pusher");
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
