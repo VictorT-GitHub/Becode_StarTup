@@ -45,7 +45,7 @@ mongoose.connection.once("open", () => {
   const changeStream = convCollection.watch();
 
   changeStream.on("change", (change) => {
-    console.log(change);
+    // console.log(change);
 
     // (Put) Add/edit/delete message
     if (change.operationType === "update") {
