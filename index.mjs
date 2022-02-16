@@ -49,7 +49,7 @@ mongoose.connection.once("open", () => {
     if (change.operationType === "update") {
       pusher.trigger("msgs", "updated", {
         timestamp: change.clusterTime,
-        documentID: change.documentKey._id,
+        docID: change.documentKey._id,
       });
     }
 
@@ -57,7 +57,7 @@ mongoose.connection.once("open", () => {
     if (change.operationType === "insert") {
       pusher.trigger("convs", "inserted", {
         timestamp: change.clusterTime,
-        documentID: change.documentKey._id,
+        docID: change.documentKey._id,
         usersID: change.fullDocument.usersID,
       });
     }
