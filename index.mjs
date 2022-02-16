@@ -48,7 +48,7 @@ mongoose.connection.once("open", () => {
     // (Put) Add/edit/delete message
     if (change.operationType === "update") {
       pusher.trigger("msgs", "updated", {
-        timestamp: change.clusterTime.$timestamp,
+        timestamp: change.clusterTime,
         documentID: change.documentKey._id,
       });
     }
@@ -56,7 +56,7 @@ mongoose.connection.once("open", () => {
     // Post new conversation
     if (change.operationType === "insert") {
       pusher.trigger("convs", "inserted", {
-        timestamp: change.clusterTime.$timestamp,
+        timestamp: change.clusterTime,
         documentID: change.documentKey._id,
         usersID: change.fullDocument.usersID,
       });
