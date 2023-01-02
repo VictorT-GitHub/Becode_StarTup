@@ -5,7 +5,7 @@ Becode group project - Fullstack mobile-first messaging application
 Backend Stack : **MongoDB** - **Mongoose** - **JOI** - **Node.js** - **Express.js** - **JsonWebToken**  
 Frontend Stack : **React.js** - **SASS** - **Axios** - **ESLint**
 
-Deployment -> **[https://star-tup-api.herokuapp.com/api/](https://star-tup-api.herokuapp.com/api/)**
+~~API Deployment -> **://star-tup-api.herokuapp.com/api/**~~ (Heroku is not free anymore. Coming soon on another platform. 🚀)
 
 ## Teamwork
 
